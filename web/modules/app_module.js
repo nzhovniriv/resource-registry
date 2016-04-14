@@ -68,11 +68,6 @@
             controllerAs: 'pp',
             templateUrl: 'views/site/personal_page.html'
         })
-        .when('/site/users', {
-            controller: 'UsersController',
-            controllerAs: 'list',
-            templateUrl: 'views/site/users.html'
-        })
         .when('/site/restorepassword', {
             controller: 'LoginController',
             templateUrl: 'views/site/restorepassword.html',
@@ -82,16 +77,6 @@
             controller: 'UsersCommunity',
             templateUrl: 'views/site/community.html',
             controllerAs: 'usersCtrl'
-        })
-        .when('/community/update/:communityId', {
-            controller: 'CommissionerCtrl',
-            templateUrl: 'views/site/set_commissioner.html',
-            controllerAs: 'commissCtrl'
-        })
-        .when('/community/communityadd', {
-            controller: 'communityAddCtrl',
-            templateUrl: 'views/site/community_add.html',
-            controllerAs: 'comAdd'
         })
         .otherwise({
             redirectTo: '/site/login'

@@ -32,7 +32,8 @@ $config = [
                     'controller' => ['user', 'resource', 'user_role_view',
                         'resource_class', 'resource_attribute',
                         'resource', 'personal_data', 'parameter',
-                        'operation_type', 'operation', 'attribute_class_view', 'search'
+                        'operation_type', 'operation', 'attribute_class_view', 'search',
+                        'community'
                     ], 'extraPatterns' => [
                     'GET search' => 'search',
                     'POST login' => 'login',
@@ -40,6 +41,7 @@ $config = [
                     'POST restorepass' => 'restorepass',
                     'POST changepass' => 'changepass',
                     'GET logout' => 'logout',
+                    'GET show' => 'show',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',

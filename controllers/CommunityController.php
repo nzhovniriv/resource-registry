@@ -24,7 +24,6 @@ class CommunityController extends ActiveController
 			'pagination' => [
 				'pageSize' => 20,
 				'pageParam' => 'page'
-
 			],
 		]);
 		return $dataProvider;

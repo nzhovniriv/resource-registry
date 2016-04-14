@@ -23254,3 +23254,337 @@ $_SERVER = [
     'argv' => []
     'argc' => 0
 ]
+2016-04-14 17:10:32 [127.0.0.1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:579
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(579): PDO->__construct('mysql:host=loca...', 'root', '019eed', NULL)
+#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(529): yii\db\Connection->createPdoInstance()
+#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
+#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
+#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
+#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
+#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
+#8 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
+#9 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
+#10 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
+#11 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
+#12 /var/www/rr.com/models/User.php(40): yii\db\BaseActiveRecord::findOne(Array)
+#13 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
+#14 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
+#15 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
+#16 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
+#17 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
+#18 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
+#19 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
+#20 /var/www/rr.com/controllers/UserController.php(26): app\models\LoginForm->login()
+#21 [internal function]: app\controllers\UserController->actionLogin()
+#22 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#23 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#25 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#26 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#27 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#28 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:534
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
+#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
+#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
+#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
+#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
+#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
+#8 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
+#9 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
+#10 /var/www/rr.com/models/User.php(40): yii\db\BaseActiveRecord::findOne(Array)
+#11 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
+#12 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
+#13 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
+#14 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
+#15 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
+#16 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
+#17 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
+#18 /var/www/rr.com/controllers/UserController.php(26): app\models\LoginForm->login()
+#19 [internal function]: app\controllers\UserController->actionLogin()
+#20 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#21 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#22 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#23 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#25 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#26 {main}
+Additional Information:
+
+2016-04-14 17:10:32 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'e8db90d35cc69ef43eb589354755e21f'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ORIGIN' => 'http://rr.com'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
+    'HTTP_REFERER' => 'http://rr.com/site/login'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=e8db90d35cc69ef43eb589354755e21f'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '40726'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1460653832.176
+    'REQUEST_TIME' => 1460653832
+    'argv' => []
+    'argc' => 0
+]
+2016-04-14 17:10:32 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\db\Exception))
+#6 {main}
+2016-04-14 17:10:32 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'e8db90d35cc69ef43eb589354755e21f'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ORIGIN' => 'http://rr.com'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
+    'HTTP_REFERER' => 'http://rr.com/site/login'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=e8db90d35cc69ef43eb589354755e21f'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '40726'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1460653832.176
+    'REQUEST_TIME' => 1460653832
+    'argv' => []
+    'argc' => 0
+]
+2016-04-14 17:10:44 [127.0.0.1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:579
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(579): PDO->__construct('mysql:host=loca...', 'root', '019eed', NULL)
+#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(529): yii\db\Connection->createPdoInstance()
+#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
+#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
+#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
+#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
+#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
+#8 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
+#9 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
+#10 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
+#11 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
+#12 /var/www/rr.com/models/User.php(40): yii\db\BaseActiveRecord::findOne(Array)
+#13 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
+#14 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
+#15 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
+#16 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
+#17 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
+#18 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
+#19 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
+#20 /var/www/rr.com/controllers/UserController.php(26): app\models\LoginForm->login()
+#21 [internal function]: app\controllers\UserController->actionLogin()
+#22 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#23 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#25 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#26 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#27 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#28 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:534
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
+#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
+#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
+#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
+#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
+#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
+#8 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
+#9 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
+#10 /var/www/rr.com/models/User.php(40): yii\db\BaseActiveRecord::findOne(Array)
+#11 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
+#12 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
+#13 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
+#14 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
+#15 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
+#16 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
+#17 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
+#18 /var/www/rr.com/controllers/UserController.php(26): app\models\LoginForm->login()
+#19 [internal function]: app\controllers\UserController->actionLogin()
+#20 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#21 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#22 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#23 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#25 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#26 {main}
+Additional Information:
+
+2016-04-14 17:10:44 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'e8db90d35cc69ef43eb589354755e21f'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ORIGIN' => 'http://rr.com'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
+    'HTTP_REFERER' => 'http://rr.com/site/login'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=e8db90d35cc69ef43eb589354755e21f'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '40740'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1460653844.01
+    'REQUEST_TIME' => 1460653844
+    'argv' => []
+    'argc' => 0
+]
+2016-04-14 17:10:44 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\db\Exception))
+#6 {main}
+2016-04-14 17:10:44 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'e8db90d35cc69ef43eb589354755e21f'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ORIGIN' => 'http://rr.com'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
+    'HTTP_REFERER' => 'http://rr.com/site/login'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=e8db90d35cc69ef43eb589354755e21f'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '40740'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1460653844.01
+    'REQUEST_TIME' => 1460653844
+    'argv' => []
+    'argc' => 0
+]
