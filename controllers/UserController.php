@@ -128,6 +128,17 @@ class UserController extends ActiveController
         $model->save();
         return true;
     }
+    public function actionGetuser(){
+        if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
+            throw new \yii\web\HttpException(400, 'Дані не отримані');
+        }
+        $model = User::getUserByUserName($post['username']);
+        if (!$model->username){
+            throw new \yii\web\HttpException(400, 'Даного користувача не існує');
+        }
+        $model-> save();
+        return $model;
+    }
     public function actionChangepass(){
 /*        echo \Yii::$app->session->get('role');
         exit('d');*/

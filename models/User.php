@@ -74,6 +74,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->auth_key;
     }
+    public static function getUserByUserName($username)
+    {
+       return static::findOne(['username' => $username]);
+    }
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
