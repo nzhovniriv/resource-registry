@@ -7,32 +7,29 @@
 
     UsersCommunity.$inject = ['$scope', '$http', 'PaginationService', 'constant', '$location'];
     function UsersCommunity($scope, $http, PaginationService, constant, $location) {
-        var usersCtrl = this;
-        usersCtrl.communities = [];
+        var comunityCtrl = this;
+        comunityCtrl.communities = [];
         (function(){
             return $http.get('rest.php/communities/show')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(result) {
-                //console.log(result);
-                usersCtrl.communities = result.data;
+                comunityCtrl.communities = result.data;
             }
             function errorHandler(result){
-                alert(result.data[0].message);
-                console.log(result.data[0].message);
+                console.log("Can't render list!");
             }
         }());
 
-        usersCtrl.searchCommunity = function(community_name) {
-          $http.get('http://rr.com/rest.php/communities/show?value='+ usersCtrl.communitySearch)
+        comunityCtrl.searchCommunity = function(community_name) {
+            $http.get('http://rr.com/rest.php/communities/show?value='+ comunityCtrl.communitySearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(result) {
-                console.log("done")
-                usersCtrl.communities = result.data;
+                comunityCtrl.communities = result.data;
             }
             function errorHandler(result){
-                console.log("eror");
+                console.log("Can't reload list!");
             }
         };
     }

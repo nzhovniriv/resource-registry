@@ -68,28 +68,39 @@
 					</div>
 				</li>
 			</ul>
-			<div class="col-md-8 margin_bottom">          
-                    <ul class="pagination pagination-sm" ng-if="items.item._meta.pageCount > 1">
-                        <li ng-if="resources._links.first">
-                            <a href="" ng-click="setPage(item._links.first.href, 'first')">&raquo;</a>
+			
+
+
+			<!-- div class="col-md-8 margin_bottom">          
+                    <ul class="pagination pagination-sm" ng-if="usersCtrl.communities._meta.pageCount > 1">
+
+                        <li ng-if="usersCtrl.communities._links.first">
+                            <a href="" ng-click="setPage(usersCtrl.communities._links.first.href, 'first')">&raquo;</a>
                         </li>
-                        <li ng-if="resources._links.prev">
-                            <a href="" ng-click="setPage(item._links.prev.href, 'prev')" >›</a>
+                        <li ng-if="usersCtrl.communities._links.prev">
+                            <a href="" ng-click="setPage(usersCtrl.communities._links.prev.href, 'prev')" >›</a>
                         </li>
 
-                        <li ng-repeat="page in getPages(item._meta.pageCount) track by $index"
+
+
+                        <li ng-repeat="page in getPages(usersCtrl.communities._meta.pageCount) track by $index"
                             ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
                             ng-if="page">
                             <span>{{page}}</span>
                         </li>
-                        <li ng-if="resources._links.next">
-                            <a href="" ng-click="setPage(item._links.next.href, 'next')" >‹</a>
+
+
+
+                        <li ng-if="usersCtrl.communities._links.next">
+                            <a href="" ng-click="setPage(usersCtrl.communities._links.next.href, 'next')" >‹</a>
                         </li>
-                        <li ng-if="resources._links.last">
-                            <a href="" ng-click="setPage(item._links.last.href, 'last')">&laquo;</a>
+                        <li ng-if="usersCtrl.communities._links.last">
+                            <a href="" ng-click="setPage(usersCtrl.communities._links.last.href, 'last')">&laquo;</a>
                         </li>
                     </ul>
-           </div> 
+           </div --> 
+
+
 		</div>
 	</div>
 

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 config/**
 runtime/**
-=======
-config/db.php
-runtime
->>>>>>> c20e1886c99be27ba3a327a207cb260719beb28c
+assets/**
