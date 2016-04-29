@@ -1,15 +1,13 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
-use yii\data\ActiveDataProvider;
+use app\controllers\AppController;
 use app\models\User;
 use app\models\Community;
 
-class CommunityController extends ActiveController
+class CommunityController extends AppController
 {
 	public $modelClass = 'app\models\Community';
-	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
 	
 	public function actionShow()
 	{
@@ -18,24 +16,16 @@ class CommunityController extends ActiveController
 		
 		if(isset($request['value'])){
 			$community->select(['name', 'prefix', 'notes'])
-			->andFilterWhere(['like', 'name', $request['value']])
+            ->andFilterWhere(['like', 'name', $request['value']])
             ->orderBy('name')
-			->asArray();	
+            ->asArray();	
 		}else{
 			$community->select(['name', 'prefix', 'notes'])
             ->orderBy('name')
 			->asArray();
 		}
 
-		$dataProvider = new ActiveDataProvider([
-			'query' => $community,
-			'pagination' => [
-				'pageSize' => 4,
-				'pageParam' => 'page',
-			],
-		]);
-		
-		return $dataProvider;
+        return self::buildPagination($community);
 	}
 
 	public function actionAddcomm()
