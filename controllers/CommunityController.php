@@ -16,12 +16,12 @@ class CommunityController extends AppController
 		
 		if(isset($request['value'])){
 			$community->select(['name', 'prefix', 'notes'])
-            ->andFilterWhere(['like', 'name', $request['value']])
-            ->orderBy('name')
-            ->asArray();	
+            		->andFilterWhere(['like', 'name', $request['value']])
+            		->orderBy('name')
+            		->asArray();	
 		}else{
 			$community->select(['name', 'prefix', 'notes'])
-            ->orderBy('name')
+        		 ->orderBy('name')
 			->asArray();
 		}
 
