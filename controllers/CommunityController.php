@@ -21,7 +21,7 @@ class CommunityController extends AppController
             		->asArray();	
 		}else{
 			$community->select(['name', 'prefix', 'notes'])
-        		 ->orderBy('name')
+        		->orderBy('name')
 			->asArray();
 		}
 
