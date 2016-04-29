@@ -25,7 +25,7 @@ class CommunityController extends AppController
 			->asArray();
 		}
 
-        return self::buildPagination($community);
+        	return self::buildPagination($community);
 	}
 
 	public function actionAddcomm()
