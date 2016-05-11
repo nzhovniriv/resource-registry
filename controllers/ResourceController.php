@@ -7,6 +7,7 @@ use app\models\PersonalData;
 use app\models\ResourceClass;
 use app\models\Parameter;
 use app\models\ResourceAttribute;
+use app\models\Coordinates;
 class ResourceController extends ActiveController
 {
 	public $modelClass = 'app\models\Resource';
@@ -289,5 +290,19 @@ class ResourceController extends ActiveController
 	public function checkAccess($action, $model = null, $params = [])
 	{
 		\Yii::$app->authcomponent->checkPermissions($action,\Yii::$app->authcomponent->write);
+	}
+
+	public function actionAdditiondate() {
+		//$request= \Yii::$app->request->get();
+		//return $request['coord'][5];
+		$json_data = "[[49.837110740852815,24.012501686811447],[49.83668517739605,24.013724774122235],[49.8366609582249,24.013821333646774],[49.836650578576425,24.01390716433525],[49.83699310580031,24.014620631933212],[49.83704154379776,24.01465281844139],[49.83710036130087,24.01466891169548],[49.837169558271775,24.01466891169548],[49.837249134665896,24.01467427611351],[49.83731833142388,24.01467427611351],[49.83740136740278,24.01466891169548],[49.837487863062485,24.01465281844139],[49.83754668002271,24.014620631933212],[49.837619336168906,24.014561623334885],[49.83768507258808,24.014502614736557],[49.83772659028046,24.01440069079399],[49.837768107937194,24.014239758253098],[49.83778194714817,24.014111012220383],[49.83777502754318,24.01395007967949],[49.83775772852634,24.013842791318893],[49.83773005008655,24.01370331645012],[49.83763663523526,24.01346728205681],[49.83737368875899,24.012791365385056],[49.83718331656395,24.012319967150685],[150]]";
+		$data = json_decode($json_data);
+		for($i = 0; $i < count($data) - 1; $i++){
+			$coord = new Coordinates();
+			$coord->lat = $data[$i][0];
+			$coord->lng = $data[$i][1];
+			$coord->resource_id = $data[count($data) - 1][0];
+			$coord->save();
+		}
 	}
 }

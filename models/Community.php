@@ -24,7 +24,7 @@ class Community extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'community';
+        return 'resource_coods';
     }
 
     /**

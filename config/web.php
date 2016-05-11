@@ -42,6 +42,7 @@ $config = [
                     'POST changepass' => 'changepass',
                     'GET logout' => 'logout',
                     'GET show' => 'show',
+                    'GET additiondate' => 'additiondate',
                     'GET showrequest' => 'showrequest',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
