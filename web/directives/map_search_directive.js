@@ -2,9 +2,17 @@
 
 	'use strict';
 
-	angular.module('restApp').directive("leafletMap", function ($rootScope) {
+	angular.module('restApp').directive("leafletMapSearch", function () {
 
-		var link = function ($scope, $element, attrs, $rootScope) {
+
+			
+
+
+		var link = function ($scope, $element, attrs, $rootScope, $http) {
+
+
+
+			
 
 			var defaults = {
 				height: '500px',
@@ -28,8 +36,8 @@
 
 			$scope.createMap = function () {
 				if (!$scope.mapCreated) {
-					$('#map').show();
-					$scope.map = L.map('map');
+					$('#map-search').show();
+					$scope.map = L.map('map-search');
 
 					$scope.baseLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 						minZoom: 5,
@@ -66,7 +74,7 @@
 						$scope.drawControl.removeFrom($scope.map);
 
 					$scope.map.remove();
-					$('#map').hide();
+					$('#map-search').hide();
 
 					$scope.mapCreated = false;
 				}
@@ -163,8 +171,8 @@
 	              }, '').addTo($scope.map);
 
 				function initCssProperties () {
-					$('#map').css({ 'height': attrs.height || defaults.height });
-					$('#map').css({ 'width': attrs.width || defaults.width });
+					$('#map-search').css({ 'height': attrs.height || defaults.height });
+					$('#map-search').css({ 'width': attrs.width || defaults.width });
 				}
 
 				function initCoordinatesElement () {
@@ -186,7 +194,7 @@
 						if ($scope.map.tap)
 							$scope.map.tap.disable();
 
-						$('#map').css({ 'cursor': 'default' });
+						$('#map-search').css({ 'cursor': 'default' });
 						$(".leaflet-control-zoom").css("visibility", "hidden");
 
 					}
@@ -287,6 +295,47 @@
 							$scope.bind = $scope.drawnItem._latlngs;
 							$scope.$apply();
 						});
+
+
+
+						$scope.map.on('click', function(click) {
+							$scope.clickData = [click.latlng.lat, click.latlng.lng];
+							console.log($scope.clickData);
+							$scope.coordCompare = {
+								'44' : 80.208,
+								'45' : 78.848,
+								'46' : 77.465,
+								'47' : 76.057,
+								'48' : 74.627,
+								'49' : 73.173,
+								'50' : 71.697,
+								'51' : 70.199,
+								'52' : 68.679
+							};
+							$scope.range = 10;
+							$rootScope.y1 = $scope.clickData[0] - (0.00900009 * $scope.range);
+							$rootScope.y2 = $scope.clickData[0] + (0.00900009 * $scope.range);
+							$rootScope.x1 = $scope.clickData[1] - ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
+							$rootScope.x2 = $scope.clickData[1] + ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
+							console.log($rootScope.y1, $rootScope.y2, $rootScope.x1, $rootScope.x2);
+
+							$scope.resources = [];
+
+						
+							// $http.get('rest.php/resources/gettingdata' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2)
+							// 	   .then(successHandler)
+							// 	   .catch(errorHandler);
+							// function successHandler(data) {
+							// 	   $scope.resources = data.data;
+							// }
+							// function errorHandler(data){
+							// 	   console.log("Can't reload list!");
+							// }
+						
+	
+
+						});
+
 
 					}
 				}
@@ -406,14 +455,15 @@
 
 		return {
 			restrict: 'E',
-			template: '<div id="map"></div>',
-			controller: 'MapCtrl',
+			templateUrl: 'directives/map-directive-tpl.html',
+			controller: 'searchingCtrl',
 			scope: {
 				bind: '=bind',
 				options: '=update'
 			},
 			link: link
 		};
+
 	});
 
 

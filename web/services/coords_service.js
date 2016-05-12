@@ -11,6 +11,7 @@
         obj.coordId = null;
         obj.coord = {};
 
+    
 
         obj.convertDDToDMS =  function (deg) {
 

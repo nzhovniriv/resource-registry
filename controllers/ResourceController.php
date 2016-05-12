@@ -3,10 +3,13 @@ namespace app\controllers;
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\Resource;
+use app\models\ResourceCoords;
 use app\models\PersonalData;
 use app\models\ResourceClass;
 use app\models\Parameter;
 use app\models\ResourceAttribute;
+use app\models\Coordinates;
+
 class ResourceController extends ActiveController
 {
 	public $modelClass = 'app\models\Resource';
@@ -285,9 +288,36 @@ class ResourceController extends ActiveController
 		$xmlWriter->save("php://output");
 	}
 
-
 	public function checkAccess($action, $model = null, $params = [])
 	{
 		\Yii::$app->authcomponent->checkPermissions($action,\Yii::$app->authcomponent->write);
+	}
+	public function actionAdditiondata() {
+		//$request= \Yii::$app->request->get();
+		//$data = json_decode($request['coord']);
+		$request = file_get_contents("php://input");
+		$data = json_decode($request);
+		for($i = 0; $i < count($data) - 1; $i++){
+			$coord = new Coordinates();
+			$coord->lat = $data[$i][0];
+			$coord->lng = $data[$i][1];
+			$coord->registration_number = $data[count($data) - 1][0];
+			$coord->save();
+		}
+	}
+	public function actionGettingdata(){
+		$request= \Yii::$app->request->get();
+		$params = [':min_lat' => $request['min_lat'], ':max_lat' => $request['max_lat'], ':min_lng' => $request['min_lng'], ':max_lng' => $request['max_lng']];
+		// $min_lat = 49.8366;
+		// $max_lat = 49.8371;
+		// $min_lng = 21.01;
+		// $max_lng = 27.011;
+		//$params = [':min_lat' => $min_lat, ':max_lat' => $max_lat, ':min_lng' => $min_lng, ':max_lng' => $max_lng];
+		$sql = "SELECT name, coordinates FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng)";
+		$data = \Yii::$app->db
+        		->createCommand($sql)
+        		->bindValues($params)
+       			->queryAll();
+        return $data;
 	}
 }

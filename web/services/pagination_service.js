@@ -3,8 +3,8 @@
     angular.module('restApp')
         .factory('PaginationService', PaginationService);
 
-        PaginationService.$inject = ['$http','$location','constant'];
-        function PaginationService ($http, $location, constant) {
+        PaginationService.$inject = ['$rootScope','$http','$location','constant'];
+        function PaginationService ($rootScope, $http, $location, constant) {
 
             var obj = {};
 
@@ -86,4 +86,6 @@
 
             return obj;
         }
+
+            console.log(obj);
 })();

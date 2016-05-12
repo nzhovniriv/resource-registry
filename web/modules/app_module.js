@@ -76,7 +76,11 @@
         .when('/resource/community', {
             controller: 'UsersCommunity',
             templateUrl: 'views/site/community.html',
-            controllerAs: 'usersCtrl'
+            controllerAs: 'communitiesCtrl'
+        })
+        .when('/resource/resource-searching', {
+            controller: 'searchingCtrl',
+            templateUrl: 'views/resource/resource-searching.html',
         })
         .otherwise({
             redirectTo: '/site/login'

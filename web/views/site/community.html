@@ -32,8 +32,9 @@
 				<h4>Пошук</h4>
 				<ng-form>
 					<span>Пошук по громаді &nbsp</span>
-					<input type="text" class="community-search" ng-model="usersCtrl.communitySearch" />
-					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="usersCtrl.searchCommunity(community_name)"></input>
+					<input type="text" class="community-search" ng-model="communitySearch" />
+					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchCommunity(community_name)"></input>
+					{{$scope.searchingVal}}
 				</ng-form>
 			</div>
 		</div>
@@ -49,11 +50,11 @@
 						<div class="col-lg-2">Дії</div>
 					</div>
 				</li>
-				<li class="list-group-item" ng-repeat="item in usersCtrl.communities.items">
+				<li class="list-group-item" ng-repeat="data in communities.items">
 					<div class="row">
-						<div class="col-lg-4">{{item.name}}</div>
-						<div class="col-lg-2">{{item.prefix}}</div>
-						<div class="col-lg-4">{{item.username}}</div>
+						<div class="col-lg-4">{{data.name}}</div>
+						<div class="col-lg-2">{{data.prefix}}</div>
+						<div class="col-lg-4">{{data.username}}</div>
 						<div class="col-lg-2">
 							<div class="btn-group">
 
@@ -71,35 +72,35 @@
 			
 
 
-			<!--div class="col-md-8 margin_bottom">          
-                    <ul class="pagination pagination-sm" ng-if="usersCtrl.communities._meta.pageCount > 1">
+			<div class="col-md-8 margin_bottom">          
+                    <ul class="pagination pagination-sm" ng-if="communities._meta.pageCount > 1">
 
-                        <li ng-if="usersCtrl.communities._links.first">
-                            <a href="" ng-click="setPage(usersCtrl.communities._links.first.href, 'first')">&raquo;</a>
+                        <li ng-if="communities._links.first">
+                            <a href="" ng-click="setPage(communities._links.first.href, 'first')">&laquo;</a>
                         </li>
-                        <li ng-if="usersCtrl.communities._links.prev">
-                            <a href="" ng-click="setPage(usersCtrl.communities._links.prev.href, 'prev')" >›</a>
+                        <li ng-if="communities._links.prev">
+                            <a href="" ng-click="setPage(communities._links.prev.href, 'prev')" >‹</a>
                         </li>
 
 
 
-                        <li ng-repeat="page in getPages(usersCtrl.communities._meta.pageCount) track by $index"
+                        <li ng-repeat="page in getPages(communities._meta.pageCount) track by $index"
                             ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
                             ng-if="page">
                             <span>{{page}}</span>
+
                         </li>
+						
+					
 
-
-
-                        <li ng-if="usersCtrl.communities._links.next">
-                            <a href="" ng-click="setPage(usersCtrl.communities._links.next.href, 'next')" >‹</a>
+                        <li ng-if="communities._links.next">
+                            <a href="" ng-click="setPage(communities._links.next.href, 'next')" >›</a>
                         </li>
-                        <li ng-if="usersCtrl.communities._links.last">
-                            <a href="" ng-click="setPage(usersCtrl.communities._links.last.href, 'last')">&laquo;</a>
+                        <li ng-if="communities._links.last">
+                            <a href="" ng-click="setPage(communities._links.last.href, 'last')">&raquo;</a>
                         </li>
                     </ul>
-           </div--> 
-
+           </div>  
 		</div>
 	</div>
 

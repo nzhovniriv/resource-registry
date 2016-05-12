@@ -48,17 +48,52 @@
 
             $rootScope.$watch('mapOptions.created', function(val) {
                 if (val) {
-                    var center = L.polygon($rootScope.coords).getBounds().getCenter();
-                    $scope.params[3].value = (getArea($rootScope.coords).toFixed(5));
-                    $scope.params[6].value = getPerimeter($rootScope.coords).toFixed(0);
-                    $rootScope.mapOptions.created = false;
-                    $scope.coord_center.lat = center.lat.toFixed(4);
-                    $scope.coord_center.lng = center.lng.toFixed(4);
-                    console.log($scope.coord_center.lng);
-            console.log($scope.coord_center.lat);
+                    $scope.cachCoordArray = [];
+                    for (var i = 0; i < $rootScope.coords.length; i++ ) {
+                        $scope.cachCoordArray.push([]);
+                        $scope.cachCoordArray[i].push($rootScope.coords[i].lat);
+                        $scope.cachCoordArray[i].push($rootScope.coords[i].lng);
+                    }
+
+
+                    (function(arr) {
+                        $scope.twoTimesSignedArea = 0;
+                        $scope.cxTimes6SignedArea = 0;
+                        $scope.cyTimes6SignedArea = 0;
+                    
+                        var length = arr.length
+                    
+                        var x = function (i) { return arr[i % length][0] };
+                        var y = function (i) { return arr[i % length][1] };
+                    
+                        for ( var i = 0; i < arr.length; i++) {
+                                                var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
+                            $scope.twoTimesSignedArea += twoSA;
+                            $scope.cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
+                            $scope.cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
+                        }
+
+                        $scope.sixSignedArea = 3 * $scope.twoTimesSignedArea;
+
+                        $scope.cachCoordArray.push([ $scope.cxTimes6SignedArea / $scope.sixSignedArea, $scope.cyTimes6SignedArea / $scope.sixSignedArea]);
+                        $scope.cachCoordArray.push([$scope.resource.registration_number]);
+
+                    }($scope.cachCoordArray));
                 }
 
             });
+
+            $scope.additionData = function(){
+                $http.post('http://rr.com/rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    console.log("success!!!");
+                }
+                function errorHandler(data){
+                    console.log("Can't reload list!");
+                }
+            };
 
             $scope.createCoords = function(lat, lng){
                 var lat = CoordsService.convertDMSToDD(lat.deg,lat.min, lat.sec).toFixed(8);
@@ -313,6 +348,11 @@
         $scope.ownerUpdate = false;
 
         $scope.createResource = function(resource, owner, params) {
+            resource.coords_center_lat = $scope.cxTimes6SignedArea / $scope.sixSignedArea;
+            resource.coords_center_lng = $scope.cyTimes6SignedArea / $scope.sixSignedArea;
+            // for (var i in resource) {
+            //     console.log("property : " + i +  "|    val :" + resource[i]);
+            // }
 
             //CREATE RESOURCE
 

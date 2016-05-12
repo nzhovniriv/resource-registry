@@ -62,7 +62,11 @@
         </div>
 
         <div class="form-group" >
-            <leaflet_map height="60vh" width="100%" coordinates="true" info="true" interactivity="true" add="true" bind="newCoords" update="options"></leaflet_map>
+
+
+            <leaflet_map height="500px" width="100%" coordinates="true" info="true" interactivity="true" add="true" bind="newCoords" update="options"></leaflet_map>
+
+
         </div>
         <hr class="devider">
         <div class="form-group">
@@ -303,7 +307,7 @@
                   <pre>Вибрана дата: <em>{{datePicker.date | date:'fullDate' }}</em></pre>
             </div>
         </div>
-        <button ng-click="createResource(resource, owner, params);"
+        <button ng-click="createResource(resource, owner, params); additionData()"
                 type="submit" class="btn btn-material-amber-400">Додати</button>
         <a href="resource/index" class="btn btn-material-grey-200">Скасувати</a>
     </form>

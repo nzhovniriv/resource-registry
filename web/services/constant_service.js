@@ -9,6 +9,7 @@
             parametersQuery: 'parameters',
             operationsQuery: 'operations',
             personal_datasQuery: 'personal_datas',
+            communitiesQuery: 'communities',
             paramsNumber: 6,
             perPage: 4,
             pageRange: 7,
