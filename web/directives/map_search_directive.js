@@ -310,9 +310,41 @@
 							$scope.$apply();
 						});
 
+						/*radius of circle*/
+						var radius = 500;
 
+						/*array for resources on map*/
+						var resourcesOnMap = [];
+
+						/*array for markers*/
+						var markersOnMap = [];
+
+						/*showing resources on the map*/
+						function showResources(resources) {
+							if(resources.length == 0) return;
+							for(var i = 0; i < resources.length; i++){
+								$scope.map.addLayer(resources[i]);
+							}
+						}
+								
+						/*deleting resources from the map*/
+						function deleteResources(resources) {
+						    if(resources.length == 0) return;
+						    for(var i = 0; i < resources.length; i++){
+						   	$scope.map.removeLayer(resources[i]);
+						   }
+							resources.length = 0;
+						}
+	
+						/*drawing circle*/
+						var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
+						    opacity: 1,
+						    weight: 1,
+						    fillOpacity: 0
+						});
 
 						$scope.map.on('click', function(click) {
+							var click = click;
 							$scope.clickData = [click.latlng.lat, click.latlng.lng];
 							console.log($scope.clickData);
 							$scope.coordCompare = {
@@ -359,14 +391,12 @@
 								}
 								console.log($scope.resourcesWithNames);
 
-								/*radius of circle*/
-								var radius = 5000;
-
-								/*array for markers*/
-								var marker = [];
 
 								/*latitude and longitude(the centroid of a closed polygon)*/
 								var items = [];
+
+								/*array for markers*/
+								var marker = [];
 
 								/*definition of the centroid of a closed polygon*/		
 								function getCentroid(arr) {
@@ -408,68 +438,29 @@
 
 								itemWrap(items);
 
-								/*getting the radius of circle*/
-								function getRadius() {
-									var input = document.getElementById('radius');
-					            	input.oninput = function() {
-					            		var value = parseInt(input.value);
-					            		if(!isNaN(value)){
-					            			radius = value;
-					            		}
-					            	};
-								}
-
-								/*drawing circle*/
-								var circle = L.circle(L.latLng(49.85, 24.0166666667), radius, {
-								    opacity: 1,
-								    weight: 1,
-								    fillOpacity: 0
-								});
-
-								/*array for resources on map*/
-								var resourcesOnMap = [];
-								
-								/*deleting resources from the map*/
-								function deleteResources(resources) {
-								    if(resources.length == 0) return;
-								    for(var i = 0; i < resources.length; i++){
-								    	$scope.map.removeLayer(resources[i]);
-								    }
-								    resources.length = 0;
-								}
-
-								/*showing resources on the map*/
-								function showResources(resources) {
-								    if(resources.length == 0) return;
-								    for(var i = 0; i < resources.length; i++){
-								    	$scope.map.addLayer(resources[i]);
-								    }
-								}
-
-								$scope.map.on('mousemove', function(e) {
-								    //getRadius();
-								    circle.setRadius(radius);
-								    circle.setLatLng(e.latlng);
+								function showResourcesOnMap(clickEvent) {
+								    circle.setLatLng(clickEvent.latlng);
 								    circle.addTo($scope.map);
 								    deleteResources(resourcesOnMap);
+								    deleteResources(markersOnMap);
 
 								   	for(var i = 0; i < marker.length; i++){
-								   		var distance = e.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
+								   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
 								   		if(distance <= radius){
-								    		$scope.map.addLayer(marker[i].bindPopup("Hello!"));
-
 								    		for(var j = 0; j < resources.length; j++){
-								    			if(getCentroid(resources[j])[0] == marker[i]._latlng.lat && getCentroid(resources[j])[1] == marker[i]._latlng.lng){
+								    			var centroid = getCentroid(resources[j]);
+								    			if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
 								    				resourcesOnMap.push(L.polygon(resources[j]));
+								    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
 								    				//map.addLayer(L.polygon(resources[j]));
 								    			}
 								    		}
 								    		showResources(resourcesOnMap);
-									    }else{
-									    	$scope.map.removeLayer(marker[i]);
+								    		showResources(markersOnMap);
 									    }
 								   	}
-								});
+								};
+								showResourcesOnMap(click);
 
 							});
 						});
